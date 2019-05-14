@@ -1,3 +1,5 @@
+let empty = "";
+let filled = "";
 let rows = null;
 let cols = null;
 const cube = [];
@@ -29,7 +31,7 @@ function initialize() {
   for (let i = 0; i < rows.get(); i++) {
     cube.push([]);
     for (let j = 0; j < cols.get(); j++) {
-      cube[i].push(0);
+      cube[i].push(empty);
     }
   }
 }
@@ -37,10 +39,10 @@ function initialize() {
 function increment() {
   const randomRow = Math.floor(Math.random() * rows.get());
   const randomCol = Math.floor(Math.random() * cols.get());
-  if (cube[randomRow][randomCol] === 1) {
+  if (cube[randomRow][randomCol] === filled) {
     return increment();
   }
-  cube[randomRow][randomCol] = 1;
+  cube[randomRow][randomCol] = filled;
 }
 
 function print() {
@@ -57,7 +59,7 @@ function print() {
 function checkIfIsCompleted() {
   for (let i = 0; i < rows.get(); i++) {
     for (let j = 0; j < cols.get(); j++) {
-      if (cube[i][j] === 0) {
+      if (cube[i][j] === empty) {
         return false;
       }
     }
@@ -74,7 +76,15 @@ function step() {
   return increment();
 }
 
-function start(rowNumber, colNumber, interval) {
+function start({
+  rowNumber,
+  colNumber,
+  interval,
+  emptyString = "0",
+  filledString = "1"
+}) {
+  empty = emptyString;
+  filled = filledString;
   rows = rowsHandler();
   cols = colsHandler();
   rows.set(rowNumber);
@@ -83,4 +93,10 @@ function start(rowNumber, colNumber, interval) {
   intervalId = setInterval(step, interval);
 }
 
-start(3, 8, 500);
+start({
+  rowNumber: 3,
+  colNumber: 8,
+  interval: 500,
+  emptyString: "e",
+  filledString: "F"
+});
