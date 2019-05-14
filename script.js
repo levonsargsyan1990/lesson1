@@ -3,6 +3,7 @@ let filled = "";
 let rows = null;
 let cols = null;
 const cube = [];
+let counter = 0;
 let intervalId = null;
 
 function rowsHandler() {
@@ -37,6 +38,7 @@ function initialize() {
 }
 
 function increment() {
+  counter++;
   const randomRow = Math.floor(Math.random() * rows.get());
   const randomCol = Math.floor(Math.random() * cols.get());
   if (cube[randomRow][randomCol] === filled) {
@@ -71,7 +73,9 @@ function step() {
   print();
   if (checkIfIsCompleted()) {
     clearInterval(intervalId);
-    return console.log("Congratulations! The process is complete");
+    return console.log(
+      `Congratulations! The process is completed in ${counter} steps`
+    );
   }
   return increment();
 }
@@ -94,9 +98,7 @@ function start({
 }
 
 start({
-  rowNumber: 3,
+  rowNumber: 12,
   colNumber: 8,
-  interval: 500,
-  emptyString: "e",
-  filledString: "F"
+  interval: 200
 });
