@@ -1,27 +1,10 @@
-// var size = 5,
-//     i, j;
+const rows = 5;
+const cols = 5;
 
-// for (i = 0; i < size; i++) {
-//     let row = '';
-//     for (j = 0; j < size; j++) {
-//         row += '0   ';
-//     }
-//     console.log(row + "\n");
-// }
-
-
-function matrix(x,y,interval){
-    return setTimeout(() => {
-        for (i = 0; i < y; i++) {
-            let row = '';
-            for (j = 0; j < x; j++) {
-                row += '0   ';
-            }
-            console.log(row + "\n")
-          }
-    }, interval);
+for (let i = 0; i < rows; i++) {
+  for (let j = 0; j < cols; j++) {
+    process.stdout.write("0     ");
+  }
+  console.log("\n");
 }
-
-matrix(4,4,3000)
-
-
+console.log("\n------------------------------\n");
