@@ -1,20 +1,42 @@
-const rows = 5;
-const cols = 5;
+let rows = null;
+let cols = null;
 const cube = [];
-let interval = null;
+let intervalId = null;
+
+function rowsHandler() {
+  let rows = null;
+  function get() {
+    return rows;
+  }
+  function set(newRows) {
+    rows = newRows;
+  }
+  return { get, set };
+}
+
+function colsHandler() {
+  let columns = null;
+  function get() {
+    return columns;
+  }
+  function set(newColumns) {
+    columns = newColumns;
+  }
+  return { get, set };
+}
 
 function initialize() {
-  for (let i = 0; i < rows; i++) {
+  for (let i = 0; i < rows.get(); i++) {
     cube.push([]);
-    for (let j = 0; j < cols; j++) {
+    for (let j = 0; j < cols.get(); j++) {
       cube[i].push(0);
     }
   }
 }
 
 function increment() {
-  const randomRow = Math.floor(Math.random() * rows);
-  const randomCol = Math.floor(Math.random() * cols);
+  const randomRow = Math.floor(Math.random() * rows.get());
+  const randomCol = Math.floor(Math.random() * cols.get());
   if (cube[randomRow][randomCol] === 1) {
     return increment();
   }
@@ -23,8 +45,8 @@ function increment() {
 
 function print() {
   const cubeSnapshot = [...cube];
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
+  for (let i = 0; i < rows.get(); i++) {
+    for (let j = 0; j < cols.get(); j++) {
       process.stdout.write(`${cubeSnapshot[i][j]}       `);
     }
     console.log("\n");
@@ -33,8 +55,8 @@ function print() {
 }
 
 function checkIfIsCompleted() {
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
+  for (let i = 0; i < rows.get(); i++) {
+    for (let j = 0; j < cols.get(); j++) {
       if (cube[i][j] === 0) {
         return false;
       }
@@ -46,15 +68,19 @@ function checkIfIsCompleted() {
 function step() {
   print();
   if (checkIfIsCompleted()) {
-    clearInterval(interval);
+    clearInterval(intervalId);
     return console.log("Congratulations! The process is complete");
   }
   return increment();
 }
 
-function start() {
+function start(rowNumber, colNumber, interval) {
+  rows = rowsHandler();
+  cols = colsHandler();
+  rows.set(rowNumber);
+  cols.set(colNumber);
   initialize();
-  interval = setInterval(step, 1000);
+  intervalId = setInterval(step, interval);
 }
 
-start();
+start(3, 8, 500);
