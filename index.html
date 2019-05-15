@@ -9,6 +9,26 @@
   </head>
   <body>
     <h1>Lesson 1</h1>
-    <p>Use your browsers console to show the output of the script</p>
+    <div>
+      <label for="width">Width</label>
+      <input id="width" type="text" placeholder="Default: 5">
+  </div>
+  <div>
+      <label for="height">Height</label>
+      <input id="height" type="text" placeholder="Default: 5">
+  </div>
+  <div>
+      <label for="time">Time (milliseconds)</label>
+      <input id="time" type="text" placeholder="Default: 1000">
+  </div>
+  <div>
+      <label for="symbol1">Symbol 1</label>
+      <input id="symbol1" type="text" maxlength="1" placeholder="Default: 0">
+  </div>
+  <div>
+      <label for="symbol2">Symbol 2</label>
+      <input id="symbol2" type="text" maxlength="1" placeholder="Default: 1">
+  </div>
+  <input type="button" onclick="start()" value="Run">
   </body>
 </html>
