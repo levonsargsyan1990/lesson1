@@ -1,6 +1,6 @@
-var counter = 0;
+var counter;
 function run(width, length, time, symbol1, symbol2) {
-    counter++;
+    counter = 0;
     let keys = [];
     for (var i = 0; i < length; i++) {
         for (var j = 0; j < width; j++) {
@@ -15,7 +15,6 @@ function run(width, length, time, symbol1, symbol2) {
     function interval() {
         printCube(currentKeys, width, length, symbol1, symbol2);
         if (keys.length == 0) {
-            printCube(currentKeys, width, length, symbol1, symbol2);
             console.log("Congratulations! The process is complete: " + counter);
             clearInterval(intervalId);
         }
@@ -25,10 +24,12 @@ function run(width, length, time, symbol1, symbol2) {
 
 function printCube(indexes = [], width, length, symbol1, symbol2) {
     let line = "";
+
     for (var i = 0; i < length; i++) {
         for (var j = 0; j < width; j++) {
             if (indexes.indexOf("" + i + j) !== -1) {
                 line += symbol2;
+                counter++;
             } else {
                 line += symbol1;
             }
