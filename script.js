@@ -166,8 +166,22 @@ const _ = {
       arr[i + start] = value 
     }
     return arr
-  }
+  },
+  clone(obj) {
+    if (null === obj || 
+      "object" !== typeof obj || 
+      Array.isArray(obj)) return obj;
+    var copy = {};
+    
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)){
+           
+          copy[key] = obj[key];
 
+        } 
+    }
+    return copy;
 }
-let b = [1,2,'a','a','a','a',];
-console.log(_.customFill(b,'*',3,2))
+}
+let b = {a:{2:1},b:'a',c: 3};
+console.log(_.clone(b))
