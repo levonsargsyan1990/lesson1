@@ -167,7 +167,7 @@ const _ = {
     }
     return arr
   },
-  clone(obj) {
+  cloneObject(obj) {
     if (null === obj || 
       "object" !== typeof obj || 
       Array.isArray(obj)) return obj;
@@ -181,7 +181,16 @@ const _ = {
         } 
     }
     return copy;
+},
+cloneArray(arr){
+  let newArr = [];
+  for(let i = 0; i < arr.length; i ++){
+    newArr.push(this.cloneObject(arr[i]))
+  }
+  return newArr
 }
 }
+let x = [{a:{2:1},b:'a',c: 3},{a:{2:1},b:'a',c: 3},{a:{2:1},b:'a',c: 3}];
 let b = {a:{2:1},b:'a',c: 3};
-console.log(_.clone(b))
+console.log(_.cloneArray(x) === x)
+
