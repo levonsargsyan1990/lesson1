@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS - Lodash</title>
+</head>
+<body>
+    <script>
+
+        function chunk(arr, size) {
+            var result = [];
+            var chunkedArr = [];
+            var currentSize = size;
+            
+            while(arr.length) {
+                while(currentSize) {
+                    if (arr.length == 0) {
+                        break;   
+                    }
+                    chunkedArr.push(arr.shift());
+                    currentSize--;
+                }
+                result.push(chunkedArr);
+                chunkedArr = [];
+                currentSize = size;
+            }
+
+            console.log(result);
+        }
+
+        function compact(arr) {
+            var result = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i]) {
+                    result.push(arr[i]);
+                }
+            }
+
+            console.log(result);
+        }
+    
+        function concat(arr = []) {
+            if (!(Array.isArray(arr))) {
+                console.log("First parameter should be an array.");
+                return;
+            }
+            
+            for (var i = 1; i < arguments.length; i++) {
+                if (Array.isArray(arguments[i])) {
+                    for (var j = 0; j < arguments[i].length; j++) {
+                        arr.push(arguments[i][j]);
+                    }
+                } else {
+                    arr.push(arguments[i]);
+                }
+            }
+            
+            console.log(arr);
+        }
+
+        function drop(arr, n = 1) {
+            while(n){
+                n--;
+                arr.shift();
+            }
+            console.log(arr);
+        }
+
+        var arr = [null, undefined, 'a', 'b', "", 0, 'c', false, 'd', NaN, 'e', 'f', 'h'];
+        console.log("arr = ", arr);
+
+        // print chunk
+        console.log("\n\n");
+        console.log("chunk(arr, 3)");
+        arr = [null, undefined, 'a', 'b', "", 0, 'c', false, 'd', NaN, 'e', 'f', 'h'];
+        chunk(arr, 3);
+        
+        // print compact
+        console.log("\n\n");
+        console.log("compact(arr)");
+        arr = [null, undefined, 'a', 'b', "", 0, 'c', false, 'd', NaN, 'e', 'f', 'h'];
+        compact(arr);
+
+        // print concat 
+        console.log("\n\n");
+        console.log("concat([1], 2, [3], [[4]])");
+        concat([1], 2, [3], [[4]]);
+
+        // print drop 
+        console.log("\n\n");
+        console.log("drop(arr, 5)");
+        arr = [null, undefined, 'a', 'b', "", 0, 'c', false, 'd', NaN, 'e', 'f', 'h'];
+        drop(arr, 5);
+        
+    </script>
+</body>
+</html>
