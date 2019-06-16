@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>User</title>
+
+    <link
+      rel="stylesheet"
+      href="http://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+  </head>
+  <body>
+    <div id="active" class="ui active inverted dimmer">
+      <div class="ui large text loader">Loading</div>
+    </div>
+
+    <table id="table" class="ui very basic collapsing celled table">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="error"></div>
+    <button id="retry" class="positive ui button" onclick="retry()">
+      Retry
+    </button>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
