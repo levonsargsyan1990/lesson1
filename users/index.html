@@ -10,30 +10,68 @@
       rel="stylesheet"
       href="http://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
     />
+    <style type="text/css">
+      #modal.flex {
+        display: flex !important;
+      }
+    </style>
   </head>
-  <body>
-    <div id="active" class="ui active inverted dimmer">
-      <div class="ui large text loader">Loading</div>
+  <body class="ui centered grid">
+    <div class="ui err" id="error">
+      <div class="ui negative message">
+        <div id="errorMessage" class="header"></div>
+      </div>
+      <button id="retry" class="retry positive ui button">
+        Retry
+      </button>
+    </div>
+    <div>
+      <div id="active" class="ui active inverted dimmer">
+        <div class="ui large text loader">Loading</div>
+      </div>
+
+      <table id="table" class="ui very basic collapsing celled table ">
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <button id="load" data-page="1" class="ui load positive basic button">
+        Load More
+      </button>
     </div>
 
-    <table id="table" class="ui very basic collapsing celled table">
-      <thead>
-        <tr>
-          <th>Avatar</th>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <div id="error">
-      <div class="ui negative message">
-        <div id="errorContent" class="header"></div>
+    <div id="modal" class="ui dimmer modals page transition" style="">
+      <div class="ui mini test modal transition visible active" style="">
+        <div class="header">
+          Delete User
+        </div>
+        <div class="content">
+          <p class="delete-confirm-message">
+            Are you sure you want to delete <span class="name"></span>
+          </p>
+          <div class="delete-error hidden ui message negative">
+            <div class="header">
+              Sorry, we were not able to delete <span class="name"></span>.
+              Please try again later
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui button cancel">
+            Cancel
+          </div>
+          <div class="ui negative button">
+            Delete
+          </div>
+        </div>
       </div>
     </div>
-    <button id="retry" class="positive ui button">
-      Retry
-    </button>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
